@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-main: #f4f4f0;
+            --text-muted: #888;
+            --accent: #1a73e8;
+            --card-bg: #111;
+            --border: #333;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background-color: rgba(10, 10, 10, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        header {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 80px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .education-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .education-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .education-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.05rem;
+        }
+
+        .education-item p {
+            margin: 0 0 5px 0;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: #222;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .contact-cta {
+            text-align: center;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-cta p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        button {
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1557b0;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><strong>Mohammed Zaid Shaikh</strong></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="form.html">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <img src="profile.jpeg" alt="Profile Picture" class="profile-img">
+        <h1>Hi, I'm Mohammed Zaid Shaikh</h1>
+        <p>I am a third-year BTech student at Symbiosis Institute of Technology, Nagpur. I am deeply passionate about Game Designing and Programming. I have developed proficiency in several programming languages and tools, including HTML/CSS, C, C#, and Unreal Engine. Currently I am pursuing Computer Science Engineering. I adapt in dynamic environments and enjoy collaborating with others. I am excellent at utilizing cutting-edge technologies and methodologies to drive projects to successful completion. I am committed to continuous learning and staying updated with the latest industry trends. I have also won Game Designing Competition multiple times.</p>
+    </header>
+
+    <section id="about">
+        <h2>Education & Skills</h2>
+        <div class="about-grid">
+            
+            <div>
+                <h3>Academic Background</h3>
+                
+                <div class="education-item">
+                    <h4>B.Tech in Computer Science Engineering</h4>
+                    <p style="color: var(--text-muted);">Symbiosis Institute of Technology, Nagpur<br>2024-2028</p>
+                    <p style="font-size: 0.95rem;">Currently in third year, pursuing a degree in Computer Science Engineering.</p>
+                </div>
+                
+                <div class="education-item">
+                    <h4>Higher Secondary Certificate (HSC)</h4>
+                    <p style="color: var(--text-muted);">School of Scholars, Atrey Layout, Nagpur<br>2022-2024</p>
+                    <p style="font-size: 0.95rem;">PCM, Passed with 74%</p>
+                </div>
+
+                <div class="education-item">
+                    <h4>Secondary School Certificate (SSC)</h4>
+                    <p style="color: var(--text-muted);">Centre Point School, Katol Road, Nagpur<br>2012-2022</p>
+                    <p style="font-size: 0.95rem;">Passed with distinction, 90%.</p>
+                </div>
+            </div>
+
+            <div>
+                <h3>Technical Toolbox</h3>
+                <div class="skill-tags">
+                    <span class="tag">C</span>
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">Unreal Engine</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Institutional NLP Chatbot</h3>
+                <p>Developed a custom chatbot over a 10-week "Hack-O-Week" period using Python, Natural Language Processing libraries, and web integration via Flask to assist users with institutional queries.</p>
+            </div>
+            <div class="project-card">
+                <h3>Tuberculosis Detection System</h3>
+                <p>Developed a machine learning model to assist in the early detection of tuberculosis from chest X-ray images, improving diagnostic accuracy and reducing false positives.</p>
+            </div>
+            <div class="project-card">
+                <h3>Farm Fresh Delivery App</h3>
+                <p>Farm Fresh Delivery brings fresh produce straight from farms to customers at lower prices. With no middlemen, customers get fresher goods, farmers earn more, and everyone benefits.</p>
+            </div>
+            <div class="project-card">
+                <h3>Online Medicine Management & Direct Ordering</h3>
+                <p>A simple website that helps the medicine shop manage their medicines and lets customers place orders directly, making the process faster and easier.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-cta">
+            <p>Interested in collaborating on a project or discussing opportunities? Feel free to reach out through my dedicated contact page.</p>
+            <a href="form.html">
+                <button type="button">Go to Contact Form</button>
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>

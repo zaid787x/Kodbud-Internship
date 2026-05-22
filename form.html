@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Validation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        h2 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group.error input, .form-group.error textarea {
+            border-color: #dc3545;
+        }
+        
+        .form-group.error .error-message {
+            display: block;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1557b0;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #28a745;
+            font-weight: bold;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 id="form-title">Get in Touch</h2>
+        
+        <div id="success-msg" class="success-message">
+            Application submitted successfully! We will be in touch.
+        </div>
+        
+        <form id="contact-form">
+            <div class="form-group" id="name-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name">
+                <div class="error-message">Name is required</div>
+            </div>
+            
+            <div class="form-group" id="email-group">
+                <label for="email">Email Address</label>
+                <input type="text" id="email">
+                <div class="error-message">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group" id="phone-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone">
+                <div class="error-message">Please enter a valid 10-digit phone number</div>
+            </div>
+
+            <div class="form-group" id="message-group">
+                <label for="message">Message</label>
+                <textarea id="message"></textarea>
+                <div class="error-message">Message cannot be empty</div>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const messageInput = document.getElementById('message');
+        const successMsg = document.getElementById('success-msg');
+        const formTitle = document.getElementById('form-title');
+
+        function showError(inputElement, groupElementId) {
+            const group = document.getElementById(groupElementId);
+            group.classList.add('error');
+        }
+
+        function clearError(groupElementId) {
+            const group = document.getElementById(groupElementId);
+            group.classList.remove('error');
+        }
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validatePhone(phone) {
+            const regex = /^\d{10}$/;
+            return regex.test(phone.replace(/[-()\s]/g, ''));
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+
+            clearError('name-group');
+            clearError('email-group');
+            clearError('phone-group');
+            clearError('message-group');
+
+            if (nameInput.value.trim() === '') {
+                showError(nameInput, 'name-group');
+                isValid = false;
+            }
+
+            if (!validateEmail(emailInput.value.trim())) {
+                showError(emailInput, 'email-group');
+                isValid = false;
+            }
+
+            if (!validatePhone(phoneInput.value.trim())) {
+                showError(phoneInput, 'phone-group');
+                isValid = false;
+            }
+
+            if (messageInput.value.trim() === '') {
+                showError(messageInput, 'message-group');
+                isValid = false;
+            }
+
+            if (isValid) {
+                form.style.display = 'none';
+                formTitle.style.display = 'none';
+                successMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
